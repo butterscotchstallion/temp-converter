@@ -1,3 +1,9 @@
+/**
+ * ℃=(℉-32)/1.8
+ * K=((℉-32)/1.8)+273.15
+ * ℉=(℃*1.8)+32
+ */
+
 export function convertCelsiusToFahrenheit(temp: number) {
     return (temp * 9 / 5) + 32;
 }

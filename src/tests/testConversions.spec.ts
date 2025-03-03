@@ -1,5 +1,6 @@
 import {
     convertCelsiusToFahrenheit,
+    convertCelsiusToKelvin,
     convertFahrenheitToCelsius,
     convertKelvinToCelsius,
     convertKelvinToFahrenheit
@@ -24,5 +25,10 @@ describe("Conversions", () => {
     test("Kelvin to Celsius", () => {
         const actual: number = convertKelvinToCelsius(100);
         expect(actual).toBe(-173.14999999999998);
+    });
+
+    test("Celsius to Kelvin", () => {
+        const actual: number = convertCelsiusToKelvin(100);
+        expect(actual).toBe(373.15);
     });
 });

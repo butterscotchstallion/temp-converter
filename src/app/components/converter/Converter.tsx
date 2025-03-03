@@ -4,6 +4,7 @@ import {InputNumber, InputNumberChangeEvent} from "primereact/inputnumber";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {Dropdown, DropdownChangeEvent} from "primereact/dropdown";
+import {convertCelsiusToFahrenheit, convertCelsiusToKelvin, convertFahrenheitToCelsius} from "./conversions.ts";
 
 interface IConvertedData {
     unit: string;
@@ -22,30 +23,22 @@ export default function Converter(): ReactElement {
     const [celsusTemp, setCelsusTemp] = useState<number>(0);
     const [fahrenheitTemp, setFahrenheitTemp] = useState<number>(0);
     const [kelvinTemp, setKelvinTemp] = useState<number>(0);
-    /**
-     * ℃=(℉-32)/1.8
-     * K=((℉-32)/1.8)+273.15
-     * ℉=(℃*1.8)+32
-     */
+
     const calculateConvertedValues: () => void = useCallback(() => {
         const currentValue: number = parseFloat(temp.toString());
 
-        if (unit !== "Celsius") {
-            setCelsusTemp((currentValue - 32) / 1.8);
-        } else {
+        if (unit === "Celsius") {
             setCelsusTemp(currentValue);
-        }
-
-        if (unit !== "Fahrenheit") {
-            setFahrenheitTemp((currentValue * 1.8) + 32);
-        } else {
+            setFahrenheitTemp(convertCelsiusToFahrenheit(currentValue));
+            setKelvinTemp(convertCelsiusToKelvin(currentValue));
+        } else if (unit === "Fahrenheit") {
             setFahrenheitTemp(currentValue);
-        }
-
-        if (unit !== "Kelvin") {
-            setKelvinTemp(((currentValue - 32) / 1.8) + 273.15);
-        } else {
+            setCelsusTemp(convertFahrenheitToCelsius(currentValue));
+            setKelvinTemp(convertFahrenheitToCelsius(currentValue));
+        } else if (unit === "Kelvin") {
             setKelvinTemp(currentValue);
+            setCelsusTemp(convertCelsiusToKelvin(currentValue));
+            setFahrenheitTemp(convertCelsiusToFahrenheit(currentValue));
         }
 
         setConvertedData([
