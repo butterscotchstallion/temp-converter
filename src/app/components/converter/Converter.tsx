@@ -8,6 +8,7 @@ import {
     convertCelsiusToFahrenheit,
     convertCelsiusToKelvin,
     convertFahrenheitToCelsius,
+    convertFahrenheitToKelvin,
     convertKelvinToCelsius,
     convertKelvinToFahrenheit
 } from "./conversions.ts";
@@ -40,7 +41,7 @@ export default function Converter(): ReactElement {
         } else if (unit === "Fahrenheit") {
             setFahrenheitTemp(currentValue);
             setCelsusTemp(convertFahrenheitToCelsius(currentValue));
-            setKelvinTemp(convertFahrenheitToCelsius(currentValue));
+            setKelvinTemp(convertFahrenheitToKelvin(currentValue));
         } else if (unit === "Kelvin") {
             setKelvinTemp(currentValue);
             setCelsusTemp(convertKelvinToCelsius(currentValue));

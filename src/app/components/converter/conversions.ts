@@ -23,3 +23,7 @@ export function convertCelsiusToKelvin(temp: number) {
 export function convertKelvinToFahrenheit(temp: number) {
     return ((temp - 273.15) * 1.8) + 32;
 }
+
+export function convertFahrenheitToKelvin(temp: number) {
+    return ((temp - 32) / 1.8) + 273.15;
+}
