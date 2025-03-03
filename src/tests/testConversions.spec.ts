@@ -18,8 +18,8 @@ describe("Conversions", () => {
     });
 
     test("Kelvin to Fahrenheit", () => {
-        const actual: number = convertKelvinToFahrenheit(100);
-        expect(actual).toBe(-279.66999999999996);
+        const actual: number = convertKelvinToFahrenheit(32);
+        expect(actual).toBe(-402.07);
     });
 
     test("Kelvin to Celsius", () => {

@@ -4,7 +4,13 @@ import {InputNumber, InputNumberChangeEvent} from "primereact/inputnumber";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {Dropdown, DropdownChangeEvent} from "primereact/dropdown";
-import {convertCelsiusToFahrenheit, convertCelsiusToKelvin, convertFahrenheitToCelsius} from "./conversions.ts";
+import {
+    convertCelsiusToFahrenheit,
+    convertCelsiusToKelvin,
+    convertFahrenheitToCelsius,
+    convertKelvinToCelsius,
+    convertKelvinToFahrenheit
+} from "./conversions.ts";
 
 interface IConvertedData {
     unit: string;
@@ -37,14 +43,14 @@ export default function Converter(): ReactElement {
             setKelvinTemp(convertFahrenheitToCelsius(currentValue));
         } else if (unit === "Kelvin") {
             setKelvinTemp(currentValue);
-            setCelsusTemp(convertCelsiusToKelvin(currentValue));
-            setFahrenheitTemp(convertCelsiusToFahrenheit(currentValue));
+            setCelsusTemp(convertKelvinToCelsius(currentValue));
+            setFahrenheitTemp(convertKelvinToFahrenheit(currentValue));
         }
 
         setConvertedData([
-            {unit: "Celsius", value: celsusTemp.toFixed(1)},
-            {unit: "Fahrenheit", value: fahrenheitTemp.toFixed(1)},
-            {unit: "Kelvin", value: kelvinTemp.toFixed(1)},
+            {unit: "Celsius", value: celsusTemp},
+            {unit: "Fahrenheit", value: fahrenheitTemp},
+            {unit: "Kelvin", value: kelvinTemp},
         ]);
     }, [celsusTemp, fahrenheitTemp, kelvinTemp, temp, unit]);
 
